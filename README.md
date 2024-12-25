@@ -1,4 +1,4 @@
-# Welcome to Modalbed
+# Welcome to ModalBed
 
 ModalBed is a PyTorch-based framework designed to facilitate reproducible and solid research in modality generalization, as introduced in [Towards Modality Generalization: A Benchmark and Prospective Analysis](https://arxiv.org/pdf/2412.18277).
 
