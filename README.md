@@ -4,13 +4,13 @@ ModalBed is a PyTorch-based framework designed to facilitate reproducible and so
 
 
 <p align="center">
-<img style="max-width:300px" src="img/MG_1.png" />
+<img style="width:400px" src="img/MG_1.png" />
 <br/>
 <strong>The problem of Modality Generalization (MG).</strong> The learner trained on multiple modalities (e.g., video or audio) is capable of performing well on unseen modalities (e.g., depth) during testing. 
 </p>
 
 <p align="center">
-<img style="max-width:500px" src="img/MG_2.png" />
+<img style="width:500px" src="img/MG_2.png" />
 <br/>
 <strong>The framework of ModalBed.</strong>
 </p>
@@ -68,7 +68,8 @@ If you find this repository useful, please consider giving a star ⭐ and citati
 ### Current results
 
 <p align="center"> 
-<img width=250 height=400 src="img/weak.png" />
-<img width=250 height=400 src="img/strong.png" />
+<img width=300 height=450 src="img/weak.png" />
+
+<img width=300 height=450 src="img/strong.png" />
 </p>
 
