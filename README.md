@@ -4,7 +4,7 @@ ModalBed is a PyTorch-based framework designed to facilitate reproducible and so
 
 
 <p align="center">
-<img style="width:400px" src="img/MG_1.png" />
+<img style="width:350px" src="img/MG_1.png" />
 <br/>
 <strong>The problem of Modality Generalization (MG).</strong> The learner trained on multiple modalities (e.g., video or audio) is capable of performing well on unseen modalities (e.g., depth) during testing. 
 </p>
@@ -16,13 +16,13 @@ ModalBed is a PyTorch-based framework designed to facilitate reproducible and so
 </p>
 
 
-### Continual Update!
+### Continual update!
 ModalBed is an ongoing project that will be continually updated with new results, algorithms, and datasets. Contributions from fellow researchers through pull requests are highly encouraged and welcomed :).
 
 See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algorithms](modalbed/algorithms/README.md), [datasets](dataset/README.md), [perceptors](modal_encoder/README.md).
 
 
-### Available Algorithms
+### Available algorithms
 
 - Feature Concatenation (Concat)
 - On-the-fly Gradient Modulation ([OGM](https://openaccess.thecvf.com/content/CVPR2022/papers/Peng_Balanced_Multimodal_Learning_via_On-the-Fly_Gradient_Modulation_CVPR_2022_paper.pdf))
@@ -35,7 +35,7 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 - Conditional Contrastive Adversarial Domain ([CondCAD](https://arxiv.org/abs/2201.00057))
 - Empirical Quantile Risk Minimization ([EQRM](https://arxiv.org/abs/2207.09944))
 
-### Available Perceptors
+### Available perceptors
 
 - ImageBind ([paper](https://facebookresearch.github.io/ImageBind/paper), [codebase](https://github.com/facebookresearch/ImageBind))
 - LanguageBind ([paper](https://arxiv.org/abs/2310.01852), [codebase](https://github.com/PKU-YuanGroup/LanguageBind?tab=readme-ov-file))
@@ -43,10 +43,39 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 
 - Custom perceptors inherited from T5([paper](https://arxiv.org/abs/1910.10683), [codebase](https://huggingface.co/google-t5/t5-small)) and ViT([paper](https://arxiv.org/abs/2010.11929), [codebase](https://huggingface.co/google/vit-base-patch16-224)).
 
-### Available Datasets
+### Available datasets
 - MSR-VTT: MSR-VTT: A Large Video Description Dataset for Bridging Video and Language
 - NYUDv2: Indoor Segmentation and Support Inference from RGBD Images
 - VGGSound: VGGSound: A Large-scale Audio-Visual Dataset
+
+### Quick Start
+
+Download the dartasets:
+
+```sh
+python3 -m modalbed.scripts.download --dataset="msr_vtt"
+```
+
+Download the percetors:
+```sh
+python3 -m modalbed.scripts.download --perceptor="imagebind"
+```
+
+Train a model:
+```sh
+python3 -m modalbed.scripts.train --data_dir=./datasets/ --algorithm ERM --dataset NYUDv2  --test_env 0 --perceptor imagebind
+```
+
+Launch a sweep:
+```sh
+CUDA_VISIBLE_DEVICES=2,3 python -m modalbind.scripts.sweep launch --data_dir=./datasets/ --output_dir=./msrvtt_imagebind --command_launcher multi_gpu --datasets MSR_VTT --perceptor imagebind --n_hparams 3 --n_trials 3 --algorithms ERM IRM Mixup CDANN SagNet # ...
+```
+
+Collect the results (automatically generate the latex table in `modalbed/results`):
+```sh
+python -m modalbed.scripts.collect_results --mode=weak
+```
+
 
 ### Acknowledgement
 - [DomainBed](https://github.com/facebookresearch/DomainBed), a suite to test domain generalization algorithms.
