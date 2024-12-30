@@ -1,4 +1,4 @@
-# Welcome to ModalBed
+# <img height=34 src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Waving%20Hand.png"/> Welcome to ModalBed
 
 ModalBed is a PyTorch-based framework designed to facilitate reproducible and solid research in modality generalization, as introduced in [Towards Modality Generalization: A Benchmark and Prospective Analysis](https://arxiv.org/pdf/2412.18277).
 
@@ -48,7 +48,7 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 - NYUDv2: Indoor Segmentation and Support Inference from RGBD Images
 - VGGSound: VGGSound: A Large-scale Audio-Visual Dataset
 
-### Quick Start
+### Quick start
 
 Download the dartasets:
 
