@@ -1,0 +1,12 @@
+MSR_VTT:
+  audio: path/to/msr_vtt/audio/checkpoint
+  text: path/to/msr_vtt/text/checkpoint
+  video: path/to/msr_vtt/video/checkpoint
+NYUDv2:
+  text: path/to/nyudv2/text/checkpoint
+  vision: path/to/nyudv2/vision/checkpoint
+  depth: path/to/nyudv2/depth/checkpoint
+VGGSound:
+  text: path/to/vggsound/text/checkpoint
+  audio: path/to/vggsound/audio/checkpoint
+  video: path/to/vggsound/video/checkpoint

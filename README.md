@@ -3,10 +3,24 @@
 ModalBed is a PyTorch-based framework designed to facilitate reproducible and solid research in modality generalization, as introduced in [Towards Modality Generalization: A Benchmark and Prospective Analysis](https://arxiv.org/pdf/2412.18277).
 
 
-_The complete code is coming soon!_
+<p align="center">
+<img style="max-width:300px" src="img/MG_1.png" />
+<br/>
+<strong>The problem of Modality Generalization (MG).</strong> The learner trained on multiple modalities (e.g., video or audio) is capable of performing well on unseen modalities (e.g., depth) during testing. 
+</p>
+
+<p align="center">
+<img style="max-width:500px" src="img/MG_2.png" />
+<br/>
+<strong>The framework of ModalBed.</strong>
+</p>
+
 
 ### Continual Update!
 ModalBed is an ongoing project that will be continually updated with new results, algorithms, and datasets. Contributions from fellow researchers through pull requests are highly encouraged and welcomed :).
+
+See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algorithms](modalbed/algorithms/README.md), [datasets](dataset/README.md), [perceptors](modal_encoder/README.md).
+
 
 ### Available Algorithms
 
@@ -27,13 +41,15 @@ ModalBed is an ongoing project that will be continually updated with new results
 - LanguageBind ([paper](https://arxiv.org/abs/2310.01852), [codebase](https://github.com/PKU-YuanGroup/LanguageBind?tab=readme-ov-file))
 - UniBind ([paper](https://openaccess.thecvf.com/content/CVPR2024/papers/Lyu_UniBind_LLM-Augmented_Unified_and_Balanced_Representation_Space_to_Bind_Them_CVPR_2024_paper.pdf), [codebase](https://github.com/QC-LY/UniBind))
 
+- Custom perceptors inherited from T5([paper](https://arxiv.org/abs/1910.10683), [codebase](https://huggingface.co/google-t5/t5-small)) and ViT([paper](https://arxiv.org/abs/2010.11929), [codebase](https://huggingface.co/google/vit-base-patch16-224)).
+
 ### Available Datasets
 - MSR-VTT: MSR-VTT: A Large Video Description Dataset for Bridging Video and Language
 - NYUDv2: Indoor Segmentation and Support Inference from RGBD Images
 - VGGSound: VGGSound: A Large-scale Audio-Visual Dataset
 
 ### Acknowledgement
-- [DomainBed](https://github.com/facebookresearch/DomainBed), a suite to test domain generalization algorithms
+- [DomainBed](https://github.com/facebookresearch/DomainBed), a suite to test domain generalization algorithms.
 
 ### Citing ModalBed
 If you find this repository useful, please consider giving a star ⭐ and citation
@@ -47,3 +63,12 @@ If you find this repository useful, please consider giving a star ⭐ and citati
       primaryClass={cs.CV},
 }
 ```
+
+
+### Current results
+
+<p align="center"> 
+<img width=250 height=400 src="img/weak.png" />
+<img width=250 height=400 src="img/strong.png" />
+</p>
+
