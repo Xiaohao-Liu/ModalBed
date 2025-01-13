@@ -35,6 +35,11 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 - Conditional Contrastive Adversarial Domain ([CondCAD](https://arxiv.org/abs/2201.00057))
 - Empirical Quantile Risk Minimization ([EQRM](https://arxiv.org/abs/2207.09944))
 
+- Adaptive Risk Minimization ([ARM](https://arxiv.org/abs/2007.02931))
+- ERM++: An Improved Baseline for Domain Generalization ([ERM++](https://arxiv.org/abs/2304.01973))
+- Invariant Risk Minimization ([IRM](https://arxiv.org/abs/1907.02893))
+
+
 ### Available perceptors
 
 - ImageBind ([paper](https://facebookresearch.github.io/ImageBind/paper), [codebase](https://github.com/facebookresearch/ImageBind))
