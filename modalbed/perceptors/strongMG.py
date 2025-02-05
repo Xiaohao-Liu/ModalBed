@@ -1,8 +1,8 @@
 import sys
 sys.path.append("modal_encoder")
 import os
-from ..datasets import ModalityType
-from ..modal_encoder.model import data, load_model
+from modalbed.datasets import ModalityType
+from modal_encoder.model import data, load_model
 from .base import FeatureStorage, Preceptor
 import torch
 from torch import nn

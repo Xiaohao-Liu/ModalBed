@@ -256,7 +256,7 @@ def load_model(
         if load_pretrain:
             if load_pretrain_path is None:
                 path = pkg_resources.resource_filename(
-                    __name__, "languagebind/ckpts"
+                    __name__, "languagebind/languagebind/ckpts"
                 )
             else:
                 path = load_pretrain_path

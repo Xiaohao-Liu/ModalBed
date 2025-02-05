@@ -1,14 +1,14 @@
 import sys
 sys.path.append("modal_encoder")
 import os
-from ..datasets import ModalityType
-from ..modal_encoder.model import data, load_model, get_embed_dim
+from modalbed.datasets import ModalityType
+from modal_encoder.model import data, load_model, get_embed_dim
 from .base import FeatureStorage, Preceptor
 import torch
 import numpy as np
 from PIL import Image
 from torchvision import transforms
-from ..modal_encoder.unibind.utils.data_transform import load_and_transform_vision_data, load_and_transform_text, load_and_transform_audio_data, load_and_transform_thermal_data, load_and_transform_point_data, load_and_transform_video_data
+from modal_encoder.unibind.utils.data_transform import load_and_transform_vision_data, load_and_transform_text, load_and_transform_audio_data, load_and_transform_thermal_data, load_and_transform_point_data, load_and_transform_video_data
 
 def load_and_transform_depth_data(depth_paths, device):
     if depth_paths is None:

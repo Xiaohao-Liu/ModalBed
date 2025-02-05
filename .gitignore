@@ -1,3 +1,6 @@
 modal_encoder/*bind*
 modal_encoder/*pt*
 __pycache__
+datasets
+features_storage/
+results_storage/

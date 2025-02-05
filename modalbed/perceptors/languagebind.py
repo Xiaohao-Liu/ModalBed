@@ -1,14 +1,14 @@
 import sys
 sys.path.append("modal_encoder")
 import os
-from ..datasets import ModalityType
-from ..modal_encoder.model import data, load_model, get_embed_dim, LanguageBind
+from modalbed.datasets import ModalityType
+from modal_encoder.model import data, load_model, get_embed_dim, LanguageBind
 from .base import FeatureStorage, Preceptor
 import torch
 import numpy as np
 from PIL import Image
 from torchvision import transforms
-from ..modal_encoder.languagebind import to_device, LanguageBindImageTokenizer
+from modal_encoder.languagebind.languagebind import to_device, LanguageBindImageTokenizer
 
 
 modalityMap = lambda x:{

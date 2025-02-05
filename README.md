@@ -73,7 +73,7 @@ python3 -m modalbed.scripts.train --data_dir=./datasets/ --algorithm ERM --datas
 
 Launch a sweep:
 ```sh
-CUDA_VISIBLE_DEVICES=2,3 python -m modalbind.scripts.sweep launch --data_dir=./datasets/ --output_dir=./msrvtt_imagebind --command_launcher multi_gpu --datasets MSR_VTT --perceptor imagebind --n_hparams 3 --n_trials 3 --algorithms ERM IRM Mixup CDANN SagNet # ...
+CUDA_VISIBLE_DEVICES=2,3 python -m modalbind.scripts.sweep launch --data_dir=./dataset/ --output_dir=./msrvtt_imagebind --command_launcher multi_gpu --datasets MSR_VTT --perceptor imagebind --n_hparams 3 --n_trials 3 --algorithms ERM IRM Mixup CDANN SagNet # ...
 ```
 
 Collect the results (automatically generate the latex table in `modalbed/results`):
