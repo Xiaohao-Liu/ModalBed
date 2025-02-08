@@ -72,7 +72,7 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 
 - [ ] LLVIP: A Visible-infrared Paired Dataset for Low-light Vision 
 
-- [ ]AudioSet: A sound vocabulary and dataset
+- [ ] AudioSet: A sound vocabulary and dataset
 
 
 ### Quick start ⚡
