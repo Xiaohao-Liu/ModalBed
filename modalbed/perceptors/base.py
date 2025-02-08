@@ -13,7 +13,7 @@ class FeatureStorage:
         self.file_path = f"./features_storage/{file_path}"
         self.features = {}
         lock_file = f"./features_storage/locks/{file_path}.lock"
-        self.lock = FileLock(lock_file)
+        # self.lock = FileLock(lock_file)
         self.load_all_features()
         
     def load_all_features(self):
@@ -25,14 +25,14 @@ class FeatureStorage:
         
 
     def save_features(self, features, indices):
-        with self.lock:
-            with h5py.File(self.file_path, 'a') as f:
-                for idx, feature in zip(indices, features):
-                    try:
-                        f.create_dataset(str(idx), data=feature.cpu().detach().numpy())
-                        self.features[str(idx)] = feature.cuda()
-                    except:
-                        pass
+        # with self.lock:
+        with h5py.File(self.file_path, 'a') as f:
+            for idx, feature in zip(indices, features):
+                try:
+                    f.create_dataset(str(idx), data=feature.cpu().detach().numpy())
+                    self.features[str(idx)] = feature.cuda()
+                except:
+                    pass
 
     def load_features(self, indices):
         features = []

@@ -16,13 +16,13 @@ ModalBed is a PyTorch-based framework designed to facilitate reproducible and so
 </p>
 
 
-### Continual update!
+### Continual update! 🔄
 ModalBed is an ongoing project that will be continually updated with new results, algorithms, and datasets. Contributions from fellow researchers through pull requests are highly encouraged and welcomed :).
 
 See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algorithms](modalbed/algorithms/README.md), [datasets](dataset/README.md), [perceptors](modal_encoder/README.md).
 
 
-### Available algorithms
+### Available algorithms 🧠
 
 - Feature Concatenation (Concat)
 - On-the-fly Gradient Modulation ([OGM](https://openaccess.thecvf.com/content/CVPR2022/papers/Peng_Balanced_Multimodal_Learning_via_On-the-Fly_Gradient_Modulation_CVPR_2022_paper.pdf))
@@ -39,8 +39,13 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 - ERM++: An Improved Baseline for Domain Generalization ([ERM++](https://arxiv.org/abs/2304.01973))
 - Invariant Risk Minimization ([IRM](https://arxiv.org/abs/1907.02893))
 
+- Additive Disentanglement of Domain Features with Remix Loss ([ADRMX](https://arxiv.org/abs/2308.06624))
 
-### Available perceptors
+- Uniform Risk Minimization ([URM](https://openreview.net/forum?id=PgLbS5yp8n))
+
+
+
+### Available perceptors 👀
 
 - ImageBind ([paper](https://facebookresearch.github.io/ImageBind/paper), [codebase](https://github.com/facebookresearch/ImageBind))
 - LanguageBind ([paper](https://arxiv.org/abs/2310.01852), [codebase](https://github.com/PKU-YuanGroup/LanguageBind?tab=readme-ov-file))
@@ -48,12 +53,29 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 
 - Custom perceptors inherited from T5([paper](https://arxiv.org/abs/1910.10683), [codebase](https://huggingface.co/google-t5/t5-small)) and ViT([paper](https://arxiv.org/abs/2010.11929), [codebase](https://huggingface.co/google/vit-base-patch16-224)).
 
-### Available datasets
+
+- [ ] PointBind ([paper](https://arxiv.org/pdf/2309.00615), [codebase](https://github.com/ZiyuGuo99/Point-Bind_Point-LLM/))
+
+- [ ] FreeBind ([paper](https://arxiv.org/pdf/2405.04883), [codebase](https://github.com/zehanwang01/FreeBind))
+
+
+### Available datasets 📊
+
 - MSR-VTT: MSR-VTT: A Large Video Description Dataset for Bridging Video and Language
 - NYUDv2: Indoor Segmentation and Support Inference from RGBD Images
 - VGGSound: VGGSound: A Large-scale Audio-Visual Dataset
 
-### Quick start
+
+- [ ] TVL: A Touch, Vision, and Language Dataset for Multimodal Alignment
+
+- [ ] MOSEI: CMU Multimodal Opinion Sentiment and Emotion Intensity
+
+- [ ] LLVIP: A Visible-infrared Paired Dataset for Low-light Vision 
+
+- [ ]AudioSet: A sound vocabulary and dataset
+
+
+### Quick start ⚡
 
 Download the dartasets:
 
@@ -82,10 +104,10 @@ python -m modalbed.scripts.collect_results --mode=weak
 ```
 
 
-### Acknowledgement
+### Acknowledgement 🙏
 - [DomainBed](https://github.com/facebookresearch/DomainBed), a suite to test domain generalization algorithms.
 
-### Citing ModalBed
+### Citing ModalBed 📚
 If you find this repository useful, please consider giving a star ⭐ and citation
 ```
 @misc{liu2024modalbed,
@@ -99,7 +121,7 @@ If you find this repository useful, please consider giving a star ⭐ and citati
 ```
 
 
-### Current results
+### Current results 📈
 
 <p align="center"> 
 <img width=300 height=450 src="img/weak.png" />

@@ -74,7 +74,7 @@ class OracleSelectionMethod(SelectionMethod):
 
 class IIDAccuracySelectionMethod(SelectionMethod):
     """Picks argmax(mean(env_out_acc for env in train_envs))"""
-    name = "training-domain validation set"
+    name = "training-modality validation set"
 
     @classmethod
     def _step_acc(self, record):
@@ -101,7 +101,7 @@ class IIDAccuracySelectionMethod(SelectionMethod):
 
 class IIDAutoLRAccuracySelectionMethod(SelectionMethod):
     """Picks argmax(mean(env_out_acc for env in train_envs))"""
-    name = "auto lr training-domain validation set"
+    name = "auto lr training-modality validation set"
 
     @classmethod
     def _step_acc(self, record):
@@ -129,7 +129,7 @@ class IIDAutoLRAccuracySelectionMethod(SelectionMethod):
 
 class LeaveOneOutSelectionMethod(SelectionMethod):
     """Picks (hparams, step) by leave-one-out cross validation."""
-    name = "leave-one-domain-out cross-validation"
+    name = "leave-one-modality-out cross-validation"
 
     @classmethod
     def _step_acc(self, records):

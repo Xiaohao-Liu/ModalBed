@@ -4,3 +4,12 @@ __pycache__
 datasets
 features_storage/
 results_storage/
+*.sh
+vggs_imagebind
+train_output
+nyud*/
+vggs*/
+msrvtt*/
+run_sh/
+.vscode/
+results/

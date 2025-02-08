@@ -33,6 +33,9 @@ from .DG.CDANN import CDANN
 from .DG.SagNet import SagNet
 from .DG.IB_ERM import IB_ERM
 from .DG.CondCAD import CondCAD
+from .DG.ERMPlusPlus import ERMPlusPlus
+from .DG.ADRMX import ADRMX
+from .DG.URM import URM 
 from .DG.EQRM import EQRM
 from .MML.LFM import LFM
 from .MML.OGM import OGM
@@ -48,6 +51,9 @@ ALGORITHMS = [
     "IB_ERM",
     "CondCAD",
     "EQRM",
+    "ERMPlusPlus",
+    "ADRMX",
+    "URM",
     # OOD Algorithms <<< 
     
     # MM Algorithms >>>

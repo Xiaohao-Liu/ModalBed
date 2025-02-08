@@ -1,6 +1,7 @@
 from fire import Fire
 import os
 import sys
+import json
 
 import numpy as np
 
@@ -115,7 +116,10 @@ def print_results_tables(records, R_perceptors, R_modals, R_datasets, selection_
         "SagNet",
         "IB_ERM",
         "CondCAD",
-        "EQRM"
+        "EQRM",
+        "ADRMX",
+        "ERMPlusPlus",
+        "URM",
         ]
     
     alg_names_dg = ([n for n in algorithms.ALGORITHMS if n in alg_names_dg])
@@ -243,6 +247,71 @@ def print_results_tables(records, R_perceptors, R_modals, R_datasets, selection_
     print("\\bottomrule ")
     
     
+def save_results_to_json(records, R_perceptors, R_modals, R_datasets, selection_method, mode, output_file):
+    grouped_records = reporting.get_grouped_records(records)
+
+    if selection_method == model_selection.IIDAutoLRAccuracySelectionMethod:
+        for r in grouped_records:
+            r['records'] = merge_records(r['records'])
+
+    grouped_records = grouped_records.map(lambda group:
+        { **group, "sweep_acc": selection_method.sweep_acc(group["records"]) }
+    ).filter(lambda g: g["sweep_acc"] is not None)
+
+    results = []
+    for perceptor in R_perceptors:
+        for alg_name in ["Concat", "OGM", "LFM"] + [
+            "ERM", "IRM", "Mixup", "CDANN", "SagNet", "IB_ERM", "CondCAD", "EQRM", "ADRMX", "ERMPlusPlus", "URM"
+        ]:
+            for dataset in R_datasets:
+                means = []
+                for test_env in range(datasetlib.num_environments(dataset)):
+                    sample = grouped_records.filter_equals(
+                        "perceptor, dataset, algorithm, test_env",
+                        (format_perceptor_name(perceptor), dataset, alg_name, test_env)
+                    )
+                    trial_accs = sample.select("sweep_acc")
+                    if len(sample) > 0:
+                        p_name = sample[0]['records'][0]['args'].get('perceptor', "")
+                        if p_name != format_perceptor_name(perceptor):
+                            trial_accs = []
+                    else:
+                        trial_accs = []
+                    mean, err, _ = format_mean(trial_accs)
+                    means.append(mean)
+                    results.append({
+                        "perceptor": perceptor,
+                        "algorithm": alg_name,
+                        "dataset": dataset,
+                        # "model_select": selection_method,
+                        "modality": datasetlib.get_dataset_class(dataset).ENVIRONMENTS[test_env],
+                        "mean_accuracy": mean,
+                        "std_error": err
+                    })
+                if None in means:
+                    results.append({
+                            "perceptor": perceptor,
+                            "algorithm": alg_name,
+                            "dataset": dataset,
+                            # "model_select": selection_method,
+                            "modality": "avg",
+                            "mean_accuracy": 0,
+                            "std_error": 0
+                        })
+                else:
+                    results.append({
+                        "perceptor": perceptor,
+                        "algorithm": alg_name,
+                        "dataset": dataset,
+                        # "model_select": selection_method,
+                        "modality": "avg",
+                        "mean_accuracy": sum(means) / len(means),
+                        "std_error": 0
+                    })
+
+    with open(output_file.split(".json")[0] + f"_{selection_method.name}.json", 'w') as f:
+        json.dump(results, f, indent=4)
+
 def main(
     mode = "weak"
 ):
@@ -257,6 +326,7 @@ def main(
         datasets = ["MSR_VTT", "NYUDv2", "VGGSound"]
 
     results_file = f"modalbed/results/results_{mode}.tex"
+    json_file = f"modalbed/results/results_{mode}.json"
     
     scale_size = 0.8
     
@@ -265,7 +335,6 @@ def main(
     modals = []
     for i in datasets:
         modals.append(datasetlib.get_dataset_class(i).ENVIRONMENTS)
-    
     
     print("\\begin{table}[!h]")
     print("\\centering")
@@ -297,6 +366,7 @@ def main(
 
         print_results_tables(records, perceptors, modals, datasets, selection_method, mode)
         print("\\\\")
+        save_results_to_json(records, perceptors, modals, datasets, selection_method, mode, json_file)
     
     print("\\end{tabular}")
     print("}")

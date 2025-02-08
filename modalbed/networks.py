@@ -274,6 +274,8 @@ class PerceptorFeaturizer(nn.Module):
             torch.nn.Linear(self.n_outputs // 2, self.n_outputs)
         )
         
+        self.activation = nn.Identity() # for URM
+        
         
     def forward(self, x):
         # if self.training:
@@ -300,7 +302,6 @@ def Classifier(in_features, out_features, is_nonlinear=False):
             torch.nn.Linear(in_features // 4, out_features))
     else:
         return torch.nn.Linear(in_features, out_features)
-
 
 class WholeFish(nn.Module):
     def __init__(self, input_shape, num_classes, hparams, weights=None):
