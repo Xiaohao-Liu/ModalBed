@@ -54,9 +54,9 @@ See more details in [CONTRIBUTING.md](CONTRIBUTING.md) to contribut more [algori
 - Custom perceptors inherited from T5([paper](https://arxiv.org/abs/1910.10683), [codebase](https://huggingface.co/google-t5/t5-small)) and ViT([paper](https://arxiv.org/abs/2010.11929), [codebase](https://huggingface.co/google/vit-base-patch16-224)).
 
 
-- [ ] PointBind ([paper](https://arxiv.org/pdf/2309.00615), [codebase](https://github.com/ZiyuGuo99/Point-Bind_Point-LLM/))
+- [✅] PointBind ([paper](https://arxiv.org/pdf/2309.00615), [codebase](https://github.com/ZiyuGuo99/Point-Bind_Point-LLM/))
 
-- [ ] FreeBind ([paper](https://arxiv.org/pdf/2405.04883), [codebase](https://github.com/zehanwang01/FreeBind))
+- [✅] FreeBind ([paper](https://arxiv.org/pdf/2405.04883), [codebase](https://github.com/zehanwang01/FreeBind))
 
 
 ### Available datasets 📊

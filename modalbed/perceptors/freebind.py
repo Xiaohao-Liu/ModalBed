@@ -1,45 +1,13 @@
-import os
-from modalbed.datasets import ModalityType
-from modal_encoder.model import data, load_model, get_embed_dim
-from .base import FeatureStorage, Preceptor
 import torch
-import numpy as np
-from PIL import Image
-from torchvision import transforms
-from modal_encoder.unibind.utils.data_transform import (
-    load_and_transform_vision_data,
-    load_and_transform_text,
-    load_and_transform_audio_data,
-    load_and_transform_thermal_data,
-    load_and_transform_point_data,
-    load_and_transform_video_data,
-)
-from .utils import make_modalityLoader, load_and_transform_depth_data, make_modalityMap
-
-modalityLoader = make_modalityLoader(
-    {
-        ModalityType.TEXT: load_and_transform_text,
-        ModalityType.VISION: load_and_transform_vision_data,
-        ModalityType.AUDIO: load_and_transform_audio_data,
-        ModalityType.VIDEO: load_and_transform_video_data,
-        ModalityType.DEPTH: load_and_transform_depth_data,
-        ModalityType.THERMAL: load_and_transform_thermal_data,
-        ModalityType.POINT: load_and_transform_point_data,
-    }
-)
-
-modalityMap = make_modalityMap(
-    {
-        ModalityType.VIDEO: ModalityType.VISION,
-    }
-)
+from modalbed.datasets import ModalityType
+from modal_encoder.model import load_model, get_embed_dim
+from .base import FeatureStorage, Preceptor
 
 
-class UniBindPreceptor(Preceptor):
+class FreebindPreceptor(Preceptor):
     def __init__(self, dataset="msrvtt", freeze=True, feature_retrieval=False):
-        super(UniBindPreceptor, self).__init__(dataset, freeze)
-
-        self.n_outputs = get_embed_dim("unibind")
+        super(FreebindPreceptor, self).__init__(dataset, freeze)
+        self.n_outputs = get_embed_dim("freebind")
 
         if feature_retrieval:
             self.model = (
@@ -47,21 +15,21 @@ class UniBindPreceptor(Preceptor):
             )  # avoid some errors. please prepara the features before the training, so that such function will not be called
         else:
             if freeze:
-                model = load_model("unibind").to("cuda")  # mannuall set to cuda
+                model = load_model("freebind").to("cuda")  # mannuall set to cuda
                 self.__dict__["model"] = model  # discard the registration of parameters
                 for param in self.model.parameters():
                     param.requires_grad = False
             else:
-                self.model = load_model("unibind")
+                self.model = load_model("freebind")
         self.dataset = dataset
-
         self.feature_storage = FeatureStorage(
-            f"{dataset}_unibind.h5"
+            f"{dataset}_freebind.h5"
         )  # adopt h5 file to store/retrieve features
         self.existing_indices = self.feature_storage.indices()
 
     def forward(self, x):
         # x is a minibatch of data
+        # device = self.model.device
         device = "cuda"
         datas = {m.value: [] for m in ModalityType}
         reterived_indices = []
@@ -91,14 +59,11 @@ class UniBindPreceptor(Preceptor):
             )
 
         # inputs
-        features_m = {}
-        for m_type in datas:
-            if len(datas[m_type]) == 0:
-                continue
-            inputs = {}
-            inputs[modalityMap(m_type)] = modalityLoader(m_type)(datas[m_type], device)
-
-            features_m[m_type] = self.model(inputs)[modalityMap(m_type)]
+        features_m = {
+            m_type: self.model(value)
+            for m_type, value in datas.items()
+            if len(value) > 0
+        }
 
         if len(reterived_indices) > 0:
             features_m["reterived"] = self.feature_storage.load_features(
@@ -125,9 +90,3 @@ class UniBindPreceptor(Preceptor):
         features = features / features.norm(dim=-1, keepdim=True)
 
         return features
-
-    def update(self, minibatches, unlabeled=None):
-        all_x = []
-        for x, y in minibatches:
-            all_x.extend(x)
-        self.forward(all_x)

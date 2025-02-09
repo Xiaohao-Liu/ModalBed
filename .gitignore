@@ -1,5 +1,7 @@
 modal_encoder/*bind*
 modal_encoder/*pt*
+modal_encoder/.cache
+modal_encoder/*checkpoint*
 __pycache__
 datasets
 features_storage/
